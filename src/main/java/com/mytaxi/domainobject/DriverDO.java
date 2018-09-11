@@ -1,8 +1,7 @@
 package com.mytaxi.domainobject;
 
-import com.mytaxi.domainvalue.GeoCoordinate;
-import com.mytaxi.domainvalue.OnlineStatus;
 import java.time.ZonedDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -13,8 +12,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.mytaxi.domainvalue.GeoCoordinate;
+import com.mytaxi.domainvalue.OnlineStatus;
+
+import lombok.Setter;
+import lombok.Getter;
+
+@Getter
+@Setter
 @Entity
 @Table(
     name = "driver",
@@ -68,66 +76,4 @@ public class DriverDO
         this.dateCoordinateUpdated = null;
         this.onlineStatus = OnlineStatus.OFFLINE;
     }
-
-
-    public Long getId()
-    {
-        return id;
-    }
-
-
-    public void setId(Long id)
-    {
-        this.id = id;
-    }
-
-
-    public String getUsername()
-    {
-        return username;
-    }
-
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-
-    public Boolean getDeleted()
-    {
-        return deleted;
-    }
-
-
-    public void setDeleted(Boolean deleted)
-    {
-        this.deleted = deleted;
-    }
-
-
-    public OnlineStatus getOnlineStatus()
-    {
-        return onlineStatus;
-    }
-
-
-    public void setOnlineStatus(OnlineStatus onlineStatus)
-    {
-        this.onlineStatus = onlineStatus;
-    }
-
-
-    public GeoCoordinate getCoordinate()
-    {
-        return coordinate;
-    }
-
-
-    public void setCoordinate(GeoCoordinate coordinate)
-    {
-        this.coordinate = coordinate;
-        this.dateCoordinateUpdated = ZonedDateTime.now();
-    }
-
 }

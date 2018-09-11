@@ -2,10 +2,15 @@ package com.mytaxi.datatransferobject;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mytaxi.domainvalue.GeoCoordinate;
+
+import lombok.Setter;
+import lombok.Getter;
+
 import javax.validation.constraints.NotNull;
 
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DriverDTO
 {
@@ -40,30 +45,6 @@ public class DriverDTO
         return new DriverDTOBuilder();
     }
 
-
-    @JsonProperty
-    public Long getId()
-    {
-        return id;
-    }
-
-
-    public String getUsername()
-    {
-        return username;
-    }
-
-
-    public String getPassword()
-    {
-        return password;
-    }
-
-
-    public GeoCoordinate getCoordinate()
-    {
-        return coordinate;
-    }
 
     public static class DriverDTOBuilder
     {
