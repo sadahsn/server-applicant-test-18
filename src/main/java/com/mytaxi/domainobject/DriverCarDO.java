@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.Setter;
 import lombok.Getter;
@@ -13,17 +14,21 @@ import lombok.Getter;
 @Entity
 @Getter
 @Setter
-@Table(name = "driver_car")
+@Table(name = "driver_car",
+    uniqueConstraints = {@UniqueConstraint(
+        columnNames = {"driver_id", "car_id"})
+    })
+
 public class DriverCarDO
 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(nullable = false)
+
+    @Column(name = "driver_id", nullable = false)
     private Long driverId;
 
-    @Column(nullable = false)
+    @Column(name = "car_id", nullable = false)
     private Long carId;
 }

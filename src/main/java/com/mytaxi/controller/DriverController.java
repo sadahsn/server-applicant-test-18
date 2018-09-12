@@ -4,11 +4,16 @@ import com.mytaxi.controller.mapper.DriverMapper;
 import com.mytaxi.datatransferobject.DriverDTO;
 import com.mytaxi.domainobject.DriverDO;
 import com.mytaxi.domainvalue.OnlineStatus;
+import com.mytaxi.exception.CarAlreadyInUseException;
 import com.mytaxi.exception.ConstraintsViolationException;
 import com.mytaxi.exception.EntityNotFoundException;
 import com.mytaxi.service.driver.DriverService;
+import com.mytaxi.service.drivercar.DriverCarService;
+
 import java.util.List;
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,11 +38,14 @@ public class DriverController
 
     private final DriverService driverService;
 
+    private final DriverCarService driverCarService;
+
 
     @Autowired
-    public DriverController(final DriverService driverService)
+    public DriverController(final DriverService driverService, DriverCarService driverCarService)
     {
         this.driverService = driverService;
+        this.driverCarService = driverCarService;
     }
 
 
@@ -77,5 +85,19 @@ public class DriverController
     public List<DriverDTO> findDrivers(@RequestParam OnlineStatus onlineStatus)
     {
         return DriverMapper.makeDriverDTOList(driverService.find(onlineStatus));
+    }
+
+
+    @PostMapping("/selectCar")
+    public DriverDTO selectCar(@RequestParam Long driverId, @RequestParam Long carId) throws EntityNotFoundException, CarAlreadyInUseException
+    {
+        return driverCarService.selectCar(driverId, carId);
+    }
+
+
+    @DeleteMapping("/deselectCar")
+    public void deSelectCar(@RequestParam Long driverId, @RequestParam Long carId) throws EntityNotFoundException, CarAlreadyInUseException
+    {
+        driverCarService.deSelectCar(driverId, carId);
     }
 }

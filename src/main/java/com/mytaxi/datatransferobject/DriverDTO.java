@@ -1,13 +1,14 @@
 package com.mytaxi.datatransferobject;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mytaxi.domainvalue.GeoCoordinate;
 
-import lombok.Setter;
 import lombok.Getter;
-
-import javax.validation.constraints.NotNull;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -25,18 +26,21 @@ public class DriverDTO
 
     private GeoCoordinate coordinate;
 
+    @JsonProperty("car")
+    private CarDTO car;
+
 
     private DriverDTO()
-    {
-    }
+    {}
 
 
-    private DriverDTO(Long id, String username, String password, GeoCoordinate coordinate)
+    private DriverDTO(Long id, String username, String password, GeoCoordinate coordinate, CarDTO car)
     {
         this.id = id;
         this.username = username;
         this.password = password;
         this.coordinate = coordinate;
+        this.car = car;
     }
 
 
@@ -45,13 +49,13 @@ public class DriverDTO
         return new DriverDTOBuilder();
     }
 
-
     public static class DriverDTOBuilder
     {
         private Long id;
         private String username;
         private String password;
         private GeoCoordinate coordinate;
+        private CarDTO car;
 
 
         public DriverDTOBuilder setId(Long id)
@@ -84,7 +88,7 @@ public class DriverDTO
 
         public DriverDTO createDriverDTO()
         {
-            return new DriverDTO(id, username, password, coordinate);
+            return new DriverDTO(id, username, password, coordinate, car);
         }
 
     }

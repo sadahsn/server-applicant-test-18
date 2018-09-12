@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -16,19 +17,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.mytaxi.domainvalue.EngineType;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(
     name = "car",
     uniqueConstraints = @UniqueConstraint(name = "uc_licenceplate", columnNames = {"license_plate"}))
 public class CarDO
 {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -41,10 +46,10 @@ public class CarDO
 
     @Column(name ="seat_count",nullable = false)
     @NotNull(message = "Seat Count can not be null!")
-    private int seatCount;
+    private Integer seatCount;
 
     @Column(nullable = false)
-    private float rating;
+    private Float rating;
 
     @Enumerated(EnumType.STRING)
     @Column(name="engine_type",nullable = false)
@@ -58,7 +63,7 @@ public class CarDO
     private Boolean deleted = false;
 
     @Column
-    private boolean isConvertible;
+    private Boolean convertible;
 
     @Column(nullable = false)
     private String color;
@@ -70,7 +75,7 @@ public class CarDO
     public CarDO(
         @NotNull(message = "License plate can not be null!") String licensePlate,
         @NotNull(message = "Seat Count can not be null!") int seatCount, float rating, EngineType engineType,
-        @NotNull(message = "Manufacturer can not be null!") String manufacturer, String color, boolean isConvertible, String model)
+        @NotNull(message = "Manufacturer can not be null!") String manufacturer, String color, boolean convertible, String model)
     {
         super();
         this.licensePlate = licensePlate;
@@ -80,7 +85,7 @@ public class CarDO
         this.manufacturer = manufacturer;
         this.color = color;
         this.deleted = false;
-        this.isConvertible = isConvertible;
+        this.convertible = convertible;
         this.model = model;
     }
     
