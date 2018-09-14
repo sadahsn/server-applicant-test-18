@@ -1,16 +1,17 @@
 package com.mytaxi.service.driver;
 
+import java.util.List;
+
 import com.mytaxi.domainobject.DriverDO;
 import com.mytaxi.domainvalue.OnlineStatus;
 import com.mytaxi.exception.ConstraintsViolationException;
 import com.mytaxi.exception.EntityNotFoundException;
-import java.util.List;
 
 public interface DriverService
 {
 
-    DriverDO find(Long driverId) throws EntityNotFoundException;
-
+    DriverDO findDriver(long driverId) throws EntityNotFoundException;
+    
     DriverDO create(DriverDO driverDO) throws ConstraintsViolationException;
 
     void delete(Long driverId) throws EntityNotFoundException;

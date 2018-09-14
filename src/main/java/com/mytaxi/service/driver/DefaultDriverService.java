@@ -40,7 +40,7 @@ public class DefaultDriverService implements DriverService
      * @throws EntityNotFoundException if no driver with the given id was found.
      */
     @Override
-    public DriverDO find(Long driverId) throws EntityNotFoundException
+    public DriverDO findDriver(long driverId) throws EntityNotFoundException
     {
         return findDriverChecked(driverId);
     }

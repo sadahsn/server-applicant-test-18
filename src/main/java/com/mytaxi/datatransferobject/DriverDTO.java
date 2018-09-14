@@ -6,13 +6,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mytaxi.domainvalue.GeoCoordinate;
+import com.mytaxi.domainvalue.OnlineStatus;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Builder
+@AllArgsConstructor
 public class DriverDTO
 {
     @JsonIgnore
@@ -24,6 +29,8 @@ public class DriverDTO
     @NotNull(message = "Password can not be null!")
     private String password;
 
+    private OnlineStatus onlineStatus;
+
     private GeoCoordinate coordinate;
 
     @JsonProperty("car")
@@ -34,12 +41,13 @@ public class DriverDTO
     {}
 
 
-    private DriverDTO(Long id, String username, String password, GeoCoordinate coordinate, CarDTO car)
+    private DriverDTO(Long id, String username, String password, GeoCoordinate coordinate, OnlineStatus onlineStatus, CarDTO car)
     {
         this.id = id;
         this.username = username;
         this.password = password;
         this.coordinate = coordinate;
+        this.onlineStatus = onlineStatus;
         this.car = car;
     }
 
@@ -55,6 +63,7 @@ public class DriverDTO
         private String username;
         private String password;
         private GeoCoordinate coordinate;
+        private OnlineStatus onlineStatus;
         private CarDTO car;
 
 
@@ -86,9 +95,23 @@ public class DriverDTO
         }
 
 
+        public DriverDTOBuilder setOnlineStatus(OnlineStatus onlineStatus)
+        {
+            this.onlineStatus = onlineStatus;
+            return this;
+        }
+
+
+        public DriverDTOBuilder setCarDto(CarDTO car)
+        {
+            this.car = car;
+            return this;
+        }
+
+
         public DriverDTO createDriverDTO()
         {
-            return new DriverDTO(id, username, password, coordinate, car);
+            return new DriverDTO(id, username, password, coordinate, onlineStatus, car);
         }
 
     }
