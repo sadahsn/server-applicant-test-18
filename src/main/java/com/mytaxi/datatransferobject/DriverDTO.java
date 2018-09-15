@@ -36,11 +36,6 @@ public class DriverDTO
     @JsonProperty("car")
     private CarDTO car;
 
-
-    private DriverDTO()
-    {}
-
-
     private DriverDTO(Long id, String username, String password, GeoCoordinate coordinate, OnlineStatus onlineStatus, CarDTO car)
     {
         this.id = id;

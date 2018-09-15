@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ConstraintsViolationException extends Exception
 {
 
-    static final long serialVersionUID = -3387516993224229948L;
+    private static final long serialVersionUID = -3387516993224229948L;
 
 
     public ConstraintsViolationException(String message)

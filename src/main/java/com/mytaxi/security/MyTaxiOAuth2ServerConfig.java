@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 public class MyTaxiOAuth2ServerConfig extends AuthorizationServerConfigurerAdapter
 {
 
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
 
     public MyTaxiOAuth2ServerConfig(AuthenticationConfiguration authenticationConfiguration) throws Exception
