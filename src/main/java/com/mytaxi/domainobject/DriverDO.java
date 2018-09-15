@@ -26,8 +26,7 @@ import lombok.Getter;
 @Entity
 @Table(
     name = "driver",
-    uniqueConstraints = @UniqueConstraint(name = "uc_username", columnNames = {"username"})
-)
+    uniqueConstraints = @UniqueConstraint(name = "uc_username", columnNames = {"username"}))
 public class DriverDO
 {
 
@@ -58,13 +57,11 @@ public class DriverDO
     private ZonedDateTime dateCoordinateUpdated = ZonedDateTime.now();
 
     @Enumerated(EnumType.STRING)
-    @Column(name="online_status",nullable = false)
+    @Column(name = "online_status", nullable = false)
     private OnlineStatus onlineStatus;
 
-
-    private DriverDO()
-    {
-    }
+    public DriverDO()
+    {}
 
 
     public DriverDO(String username, String password)

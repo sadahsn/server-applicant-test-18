@@ -41,8 +41,8 @@ You should commit into your local git repository and include the commit history 
 Ans: 
 * CarController has all CRUD operations
 * DriverController is extended with additional functionalities like selectCar, deSelectCar.
-* DriverDo is mapped with selected car id. 
-* Added example data to data.sql. Schema related infomation is in schema.aql
+* DriverDto is mapped with selected car. 
+* Added example data to data.sql. Schema related information is in schema.aql
 ---
 
 
