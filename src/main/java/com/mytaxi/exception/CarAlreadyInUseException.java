@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CarAlreadyInUseException extends Exception
 {
     static final long serialVersionUID = -3387516993224229948L;
-    
+
+
     public CarAlreadyInUseException(String message)
     {
         super(message);

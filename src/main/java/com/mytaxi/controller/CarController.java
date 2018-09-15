@@ -24,6 +24,9 @@ import com.mytaxi.exception.ConstraintsViolationException;
 import com.mytaxi.exception.EntityNotFoundException;
 import com.mytaxi.service.car.CarService;
 
+/**
+ * All operations with car will be routed by this controller.
+ */
 @RestController
 @RequestMapping("v1/cars")
 public class CarController
@@ -59,7 +62,7 @@ public class CarController
 
 
     @DeleteMapping("/{carId}")
-    public ResponseEntity<CarDTO> deleteCar(@PathVariable long carId) throws EntityNotFoundException
+    public ResponseEntity<HttpStatus> deleteCar(@PathVariable long carId) throws EntityNotFoundException
     {
         carService.deleteCar(carId);
         return new ResponseEntity(HttpStatus.OK);

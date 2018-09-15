@@ -9,19 +9,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import com.mytaxi.util.LoggingInterceptor;
 
-import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @SpringBootApplication
-//@Configuration
-public class MytaxiServerApplicantTestApplication
+@Configuration
+public class MytaxiServerApplicantTestApplication extends WebMvcConfigurerAdapter
 {
 
     public static void main(String[] args)
@@ -30,11 +28,11 @@ public class MytaxiServerApplicantTestApplication
     }
 
 
-   /* @Override
+    @Override
     public void addInterceptors(InterceptorRegistry registry)
     {
         registry.addInterceptor(new LoggingInterceptor()).addPathPatterns("/**");
-    }*/
+    }
 
 
     @Bean
@@ -42,7 +40,7 @@ public class MytaxiServerApplicantTestApplication
     {
         return new Docket(DocumentationType.SWAGGER_2)
             .select()
-            .apis(RequestHandlerSelectors.any())
+            .apis(RequestHandlerSelectors.basePackage("com.mytaxi.controller"))
             .paths(PathSelectors.any())
             .build()
             .apiInfo(generateApiInfo());
@@ -54,5 +52,5 @@ public class MytaxiServerApplicantTestApplication
         return new ApiInfo("mytaxi Server Applicant Test Service", "This service is to check the technology knowledge of a server applicant for mytaxi.", "Version 1.0 - mw",
             "urn:tos", "career@mytaxi.com", "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0");
     }
-    
+
 }

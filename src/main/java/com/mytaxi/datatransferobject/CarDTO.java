@@ -1,7 +1,5 @@
 package com.mytaxi.datatransferobject;
 
-
-
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,9 +32,9 @@ public class CarDTO
     private String licensePlate;
 
     private String manufacturer;
-    
+
     private String model;
-    
+
     private String color;
-    
+
 }

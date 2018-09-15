@@ -38,12 +38,19 @@ You should commit into your local git repository and include the commit history 
  * Extend the DriverDo to map the selected car to the driver.
  * Add example data to resources/data.sql
 
+Ans: 
+* CarController has all CRUD operations
+* DriverController is extended with additional functionalities like selectCar, deSelectCar.
+* DriverDo is mapped with selected car id. 
+* Added example data to data.sql. Schema related infomation is in schema.aql
 ---
 
 
 ## Task 2
 First come first serve: A car can be selected by exactly one ONLINE Driver. If a second driver tries to select a already used car you should throw a CarAlreadyInUseException.
 
+Ans:
+DriverController.selectCar and DriverController.deSelectCar implementation has this feature.
 ---
 
 
@@ -54,6 +61,9 @@ Imagine a driver management frontend that is used internally by mytaxi employees
 * driver/car attributes as input parameters
 * return list of drivers
 
+Ans:
+* DriverController.filterDrivers has this feature implemented.
+
 ---
 
 
@@ -63,6 +73,29 @@ Secure the API so that authentication is needed to access it. The details are up
 
 Please include instructions how to authenticate/login, so that we can test the endpoints you implemented!
 
+Ans:
+* Following URL is required to generate the token:
+Step 1: 
+Copy the generated security password from spring boot log during bootup time:
+ex:
+Using generated security password: 63958fb1-e000-4926-a51b-54e2c43a4fe5
+
+Step 2: Generate the Authorization header using Postman
+
+URL: http://localhost:8080/oauth/token
+Authorization tab: Type=Basic Auth, Username: client, Password: secret
+
+Click on "Update Request"
+
+Step 3: 
+ 
+curl -X POST --user 'client:secret' -d 'grant_type=password&username=user&password={generated password}' http://localhost:8080/oauth/token
+
+Step 4
+Access the API's using access token:
+http://localhost:8080/v1/drivers/1?access_token=54c4093a-8599-4200-a55e-4808e3261a71
+
+Note: evey resource must be accessed by providing parameter value in "access_token"
 ---
 
 

@@ -44,7 +44,7 @@ public class CarDO
     @NotNull(message = "License plate can not be null!")
     private String licensePlate;
 
-    @Column(name ="seat_count",nullable = false)
+    @Column(name = "seat_count", nullable = false)
     @NotNull(message = "Seat Count can not be null!")
     private Integer seatCount;
 
@@ -52,7 +52,7 @@ public class CarDO
     private Float rating;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="engine_type",nullable = false)
+    @Column(name = "engine_type", nullable = false)
     private EngineType engineType;
 
     @Column(nullable = false)
@@ -67,7 +67,7 @@ public class CarDO
 
     @Column(nullable = false)
     private String color;
-    
+
     @Column
     private String model;
 
@@ -88,6 +88,5 @@ public class CarDO
         this.convertible = convertible;
         this.model = model;
     }
-    
 
 }

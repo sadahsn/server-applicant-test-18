@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mytaxi.controller.mapper.DriverMapper;
-import com.mytaxi.datatransferobject.CarDTO;
 import com.mytaxi.datatransferobject.DriverDTO;
 import com.mytaxi.domainobject.CarDO;
 import com.mytaxi.domainobject.DriverCarDO;
@@ -34,7 +33,6 @@ import com.mytaxi.service.drivercar.DriverCarService;
 
 /**
  * All operations with a driver will be routed by this controller.
- * <p/>
  */
 @RestController
 @RequestMapping("v1/drivers")
@@ -61,7 +59,7 @@ public class DriverController
     }
 
 
-    @PostMapping
+    @PostMapping("/createDriver")
     @ResponseStatus(HttpStatus.CREATED)
     public DriverDTO createDriver(@Valid @RequestBody DriverDTO driverDTO) throws ConstraintsViolationException
     {
@@ -86,7 +84,7 @@ public class DriverController
     }
 
 
-    @GetMapping
+    @GetMapping("/findDrivers")
     public List<DriverDTO> findDrivers(@RequestParam OnlineStatus onlineStatus)
     {
         return DriverMapper.makeDriverDTOList(driverService.find(onlineStatus));
@@ -100,7 +98,7 @@ public class DriverController
         DriverDO driver = driverService.findDriver(driverId);
         CarDO car = driverCarService.findCar(carId);
         BeanUtils.copyProperties(driverCar, driver);
-        
+
         return DriverMapper.makeDriverDTO(driver, car);
     }
 
@@ -109,8 +107,10 @@ public class DriverController
     public void deSelectCar(@RequestParam Long driverId, @RequestParam Long carId) throws EntityNotFoundException
     {
         driverCarService.deSelectCar(driverId, carId);
+
     }
-    
+
+
     @GetMapping("/filterDrivers")
     public List<Object[]> filterDriverByAttributes(@RequestParam Map<String, String> params)
     {

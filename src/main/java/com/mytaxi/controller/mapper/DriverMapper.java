@@ -1,5 +1,10 @@
 package com.mytaxi.controller.mapper;
 
+import static org.apache.commons.collections.MapUtils.getFloat;
+import static org.apache.commons.collections.MapUtils.getInteger;
+import static org.apache.commons.collections.MapUtils.getLong;
+import static org.apache.commons.collections.MapUtils.getString;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +16,12 @@ import com.mytaxi.datatransferobject.CarDTO;
 import com.mytaxi.datatransferobject.DriverDTO;
 import com.mytaxi.domainobject.CarDO;
 import com.mytaxi.domainobject.DriverDO;
-import com.mytaxi.domainvalue.EngineType;
 import com.mytaxi.domainvalue.GeoCoordinate;
 import com.mytaxi.domainvalue.OnlineStatus;
 
-import static org.apache.commons.collections.MapUtils.*;
-
+/**
+ * ObjectMapper utility for Driver DO
+ */
 public class DriverMapper
 {
     public static DriverDO makeDriverDO(DriverDTO driverDTO)
